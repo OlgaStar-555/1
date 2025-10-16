@@ -1,10 +1,10 @@
 .row_top {
     align-items: center;
-    padding: .875rem;
+    padding: 1.4rem;
 }
 
 .title {
-    font-size: 2.125rem;
+    font-size: 3.4rem;
     line-height: 1.15;
     text-transform: uppercase;
     color: #ffffff;
@@ -19,12 +19,12 @@
 }
 
 .button {
-    padding: .75rem;
+    padding: 1.2rem;
     background-color: #16a6af;
     border: none;
-    border-radius: 3px;
-    box-shadow: 0 0 3px 0 #0000001F, 0 3px 3px 0 #0000003D;
+    border-radius: .3rem;
+    box-shadow: 0 0 .3rem 0 #0000001F, 0 .3rem .3rem 0 #0000003D;
     text-transform: uppercase;
     color: #ffffff;
-    
+
 }

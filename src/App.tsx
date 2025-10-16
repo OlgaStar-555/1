@@ -21,8 +21,10 @@ export default function App() {
       <Background isAdmin={isAdmin} />
       <Header onClick={onClick} />
       <main>
-        <NavDate/>
-        <Content></Content>
+        <div className="content-wrapper">
+          <NavDate />
+          <Content></Content>
+        </div>
       </main>
     </>
   );

@@ -17,5 +17,5 @@ export default function Content(props: any) {
     console.log(data);
   
   
-  return <section className="nav-line">Content</section>;
+  return <section className="">Content</section>;
 }

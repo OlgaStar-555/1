@@ -3,6 +3,7 @@
     max-width: 990px;
     margin: 0 auto;
 }
+
 .row {
     display: flex;
     align-items: stretch;
@@ -10,4 +11,19 @@
 
 .row.row_space-between {
     justify-content: space-between;
+}
+
+.text.text_capitalize {
+    text-transform: capitalize;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.text {
+    font-size: inherit;
+    line-height: inherit;
 }
