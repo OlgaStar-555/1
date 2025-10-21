@@ -15,9 +15,6 @@ export default function NavDateItem(props: DateDataProps): ReactNode {
   };
 
   const today = new Date().toISOString().split("T")[0];
-  console.log("\n\n\t\ttoday\t", today);
-
-  console.log("\t\t\t", today === props.value);
 
   return (
     <li className={`nav-line__item ${props.isActiveDate ? "active" : ""}`}>

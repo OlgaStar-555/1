@@ -42,15 +42,6 @@ export default function NavDate(): ReactNode {
 
   useEffect(() => {
     if (elListWrapper.current && elList.current) {
-      console.log("\n\n\telementRef.current\n", elList.current);
-      console.log("\n\n\telementRef.current\n", elList.current.offsetWidth);
-
-      console.log("\n\n\telementRef.current\n", elListWrapper.current);
-      console.log(
-        "\n\n\telementRef.current\n",
-        elListWrapper.current.offsetWidth
-      );
-
       setListWidth(elList.current.offsetWidth);
 
       setListWrapperWidth(elListWrapper.current.offsetWidth);

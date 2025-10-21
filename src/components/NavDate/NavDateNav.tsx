@@ -12,7 +12,7 @@ export default function NavDateNav({
   setTranslate,
 }: NavBtnProps) {
   const handleClick = ({
-    currentTarget,
+    currentTarget
   }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (currentTarget.dataset.nav === "prev") {
       setTranslate(Math.min(translate + translateStep, 0));

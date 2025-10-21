@@ -2,6 +2,9 @@
 
 :root {
   --bg-color: #ffffffe5;
+  --card-bg: #f1ebe6f2;
+  --content-gap: 3rem;
+;
 
   font-family: 'Roboto', "Times New Roman", Arial, Helvetica, sans-serif;
   line-height: 1.5;
@@ -29,4 +32,8 @@ body {
   padding: 0;
   position: relative;
   line-height: 1.15;
+}
+
+ul, ol {
+  list-style: none;
 }
