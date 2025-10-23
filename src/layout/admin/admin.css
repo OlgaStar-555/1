@@ -1,9 +1,5 @@
 .row[class*="_row_header"] {
-    padding-left: 10.4rem;
-}
-
-.container_admin .text-login {
-    margin-left: 8.5rem;
+    padding-left: clamp(1.4rem, 10vw, 9.9rem);
 }
 
 .card.card_admin {

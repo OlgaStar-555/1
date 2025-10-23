@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 
 import Background from "./components/bg/Background";
 import Header from "./components/header/Header";
@@ -24,7 +24,7 @@ export default function App() {
             <Header isAdmin={isAdmin}/>
             <main>
                 <div className={`container container_${isAdmin ? 'admin' : 'content'}`}>
-                    <Outlet/>
+                    <Outlet />
                 </div>
             </main>
         </>
