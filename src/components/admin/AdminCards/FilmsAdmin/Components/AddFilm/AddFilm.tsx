@@ -1,13 +1,13 @@
 import './AddFilm.css'
 
-import React, {type ChangeEvent, useContext, useState} from "react";
+import React, {type ChangeEvent, useState} from "react";
 import Popup, {type ButtonProps} from "../../../../../popup/Popup.tsx";
 import API from "../../../../../../API.ts";
-import {AllDataContext} from "../../../../../../context/AllDataContext.tsx";
+import useAllData from "../../../../../../context/AllDataContext.tsx";
 
 
 export default function AddFilm() {
-    const context = useContext(AllDataContext);
+    const context = useAllData();
     if (!context) {
         throw new Error('ChildComponent должен быть обернут в AllDataProvider');
     }

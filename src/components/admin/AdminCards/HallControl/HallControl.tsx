@@ -1,15 +1,15 @@
 import './HallControl.css'
 
-import {type ChangeEvent, useContext, useState} from "react";
+import {type ChangeEvent, useState} from "react";
 import API from "../../../../API.ts";
 import Popup, {type ButtonProps} from "../../../popup/Popup.tsx";
-import {AllDataContext} from "../../../../context/AllDataContext.tsx";
+import useAllData from "../../../../context/AllDataContext.tsx";
 import AdminCard from "../AdminCard.tsx";
 import type {HallControlProps} from "../../AdminList.tsx";
 
 
 export default function HallControl({halls}: HallControlProps) {
-    const context = useContext(AllDataContext);
+    const context = useAllData();
 
     if (!context) {
         throw new Error('ChildComponent должен быть обернут в AllDataProvider');

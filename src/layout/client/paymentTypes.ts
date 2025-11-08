@@ -9,6 +9,8 @@ export interface TicketPropsType {
     ticket_price: number;
 }
 
+
+
 export interface PaymentProps {
     date: string;
     places: number[];

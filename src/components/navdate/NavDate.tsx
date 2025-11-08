@@ -1,6 +1,6 @@
 import "./NavDate.css";
 
-import { useState, useRef, useEffect } from "react";
+import {useState, useRef, useEffect} from "react";
 import type { ReactNode } from "react";
 import NavDateItem from "./NavDateItem";
 import NavDateNav from "./NavDateNav";
@@ -30,6 +30,8 @@ const dateList: DateData[] = Array.from({ length: DAYS_COUNT }, (_, i) => {
 });
 
 export default function NavDate(): ReactNode {
+
+
   const [activeDate, setActiveDate] = useState(dateList[0]["value"]);
 
   const [listTranslate, setListTranslate] = useState(0);

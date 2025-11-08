@@ -1,9 +1,9 @@
 import './FilmsSeances.css'
 
-import React, {type ChangeEvent, useContext, useEffect, useState} from 'react';
+import React, {type ChangeEvent, useEffect, useState} from 'react';
 import type {MovieFilm, MovieHall, MovieSeance} from "../../../../../../types/allData.ts";
 import API from "../../../../../../API.ts";
-import {AllDataContext} from "../../../../../../context/AllDataContext.tsx";
+import useAllData from "../../../../../../context/AllDataContext.tsx";
 import {getMinutesRu, getNumFromTime} from "../../../../../../functions.ts";
 import {filmBgcolors, MINUTES_IN_DAY} from "../../../../../../config/constants.ts";
 import Popup, {type ButtonProps} from "../../../../../popup/Popup.tsx";
@@ -61,7 +61,7 @@ export default function FilmsSeances({films, halls, seances}: FilmsSeancesProps)
         setDroppedItemsMap(seancesInHallMap)
     }, [halls, seances]);
 
-    const context = useContext(AllDataContext);
+    const context = useAllData();
 
     if (!context) {
         throw new Error('ChildComponent должен быть обернут в AllDataProvider');

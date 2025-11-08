@@ -1,11 +1,10 @@
-import {useContext} from 'react';
 import AdminCard from "../AdminCard.tsx";
-import {AllDataContext} from "../../../../context/AllDataContext.tsx";
+import useAllData from "../../../../context/AllDataContext.tsx";
 import AddFilm from "./Components/AddFilm/AddFilm.tsx";
 import FilmsSeances from "./Components/FilmSeances/FilmsSeances.tsx";
 
 export default function FilmsAdmin() {
-    const context = useContext(AllDataContext);
+    const context = useAllData();
     if (!context) {
         throw new Error('ChildComponent должен быть обернут в AllDataProvider');
     }

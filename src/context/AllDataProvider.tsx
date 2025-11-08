@@ -57,12 +57,6 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
     }, []);
 
     const refreshAllData = useCallback(async (newData: AllData | undefined) => {
-        console.log('\n\n\nREFRESH\n\n\n')
-
-        console.log(newData)
-
-        console.log({...allData, ...newData})
-
         try {
             if (newData) {
                 setAllData((prevState) => {
@@ -76,7 +70,7 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
         } catch (error) {
             console.error('Ошибка при получении данных: ', error);
         }
-    }, [allData]);
+    }, []);
 
     useEffect(() => {
         (async () => {

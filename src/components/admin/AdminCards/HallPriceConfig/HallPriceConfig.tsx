@@ -1,8 +1,8 @@
 import './Components/HallPriceConfig.css'
 
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import API from "../../../../API.ts";
-import {AllDataContext} from "../../../../context/AllDataContext.tsx";
+import useAllData from "../../../../context/AllDataContext.tsx";
 import AdminCard from "../AdminCard.tsx";
 import type {HallConfigProps} from "../../AdminList.tsx";
 import HallPrice from "./Components/HallPrice.tsx";
@@ -10,7 +10,7 @@ import SelectHall from "../../Components/SelectHall/SelectHall.tsx";
 
 export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConfigProps) {
 
-    const context = useContext(AllDataContext);
+    const context = useAllData();
 
     if (!context) {
         throw new Error('ChildComponent должен быть обернут в AllDataProvider');
