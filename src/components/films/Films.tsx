@@ -10,12 +10,7 @@ import type {AllData, MovieSeance} from "../../types/allData.ts";
 export interface FilmHall {
     hall_id: number;
     hall_name?: string;
-    seanceList?: SeanceData[];
-}
-
-export interface SeanceData {
-    id: number;
-    time: string;
+    seanceList?: MovieSeance[];
 }
 
 export interface TicketProps {
@@ -43,12 +38,12 @@ export default function Films({halls, seances, films}: AllData): ReactNode {
                     if (filmHalls.has(seance.seance_hallid)) {
                         filmHalls
                             .get(seance.seance_hallid)
-                            ?.seanceList?.push({id: seance.id, time: seance.seance_time});
+                            ?.seanceList?.push(seance);
                     } else {
                         filmHalls.set(seance.seance_hallid, {
                             hall_id: seance.seance_hallid,
                             hall_name: hallsMap.get(seance.seance_hallid)?.hall_name,
-                            seanceList: [{id: seance.id, time: seance.seance_time}],
+                            seanceList: [seance],
                         });
                     }
 

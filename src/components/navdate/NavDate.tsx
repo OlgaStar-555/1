@@ -4,26 +4,33 @@ import {useState, useRef, useEffect} from "react";
 import type { ReactNode } from "react";
 import NavDateItem from "./NavDateItem";
 import NavDateNav from "./NavDateNav";
+import useClientContext from "../../layout/client/ClientContext.tsx";
+import {LENGTH_OF_DAY} from "../../config/constants.ts";
 
 export interface DateData {
   value: string;
+  hover: string;
   date: number;
   day: string;
 }
 
-const LENGTH_OF_DAY = 24 * 60 * 60 * 1000;
-const DAYS_COUNT = 35;
+
+const DAYS_COUNT = 10;
 const DAYS_OF_WEEK = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
 
-const now = new Date();
 
-const today = new Date(now.getTime() - (now.getTime() % LENGTH_OF_DAY) + 1);
+const today = new Date();
+
+today.setHours(0, 0, 1, 1)
 
 const dateList: DateData[] = Array.from({ length: DAYS_COUNT }, (_, i) => {
   return new Date(today.getTime() + LENGTH_OF_DAY * i);
 }).map((date) => {
+  const dateValue = date.toLocaleString().split(",")[0]
+
   return {
-    value: date.toISOString().split("T")[0],
+    hover: dateValue,
+    value: dateValue.split('.').reverse().join('-'),
     date: date.getDate(),
     day: DAYS_OF_WEEK[date.getDay()],
   };
@@ -31,8 +38,15 @@ const dateList: DateData[] = Array.from({ length: DAYS_COUNT }, (_, i) => {
 
 export default function NavDate(): ReactNode {
 
+  const {updateDate} = useClientContext();
+
 
   const [activeDate, setActiveDate] = useState(dateList[0]["value"]);
+
+  useEffect(() => {
+    console.log('useEffect updateDate')
+    updateDate(dateList[0]["value"])
+  }, [updateDate]);
 
   const [listTranslate, setListTranslate] = useState(0);
 
@@ -65,7 +79,10 @@ export default function NavDate(): ReactNode {
               <NavDateItem
                 key={dateItem.value}
                 isActiveDate={activeDate === dateItem.value}
-                setActiveDate={setActiveDate}
+                setActiveDate={() => {
+                  setActiveDate(dateItem.value)
+                  updateDate(dateItem.value)
+                }}
                 {...dateItem}
               />
             )

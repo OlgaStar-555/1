@@ -1,10 +1,12 @@
 import "./Fims.css";
 // import { useState } from "react";
 
-import type {MovieFilm} from "../../types/allData.ts";
+import type {MovieFilm, MovieSeance} from "../../types/allData.ts";
 import type {FilmHall} from "./Films.tsx";
 import {useNavigate} from "react-router-dom";
 import {FILMS} from "../../config/configRouter.ts";
+import useClientContext from "../../layout/client/ClientContext.tsx";
+import {getNumFromTime} from "../../functions.ts";
 
 export interface FilmProps extends MovieFilm {
     filmHalls?: Map<number, FilmHall>;
@@ -15,19 +17,23 @@ export interface FilmProps extends MovieFilm {
 
 export default function Card(props: FilmProps) {
 
+    const {todayMin, todayStr, activeDate} = useClientContext()
+
     const navigate = useNavigate()
 
     console.log(`\n\n\n\n\t\tCARD\t${props.film_name}\n\n`);
 
     console.table(props)
 
+
+
     console.log("props.filmHalls");
     console.log(props.filmHalls);
 
-    const handleClick = (seanceId: number): void => {
-        props.setSeance(seanceId)
+    const handleClick = (seance: MovieSeance): void => {
+        props.setSeance(seance.id)
 
-        navigate(`${FILMS}/${seanceId}`)
+        navigate(`${FILMS}/${seance.id}`)
     };
 
     const items: React.ReactNode[] = [];
@@ -40,12 +46,16 @@ export default function Card(props: FilmProps) {
                         return (
                             <li key={seance.id}>
                                 <button
+                                    disabled={
+                                        activeDate === todayStr
+                                        && todayMin > getNumFromTime(seance.seance_time)
+                                    }
                                     className="button button_link"
                                     onClick={() => {
-                                        handleClick(seance.id)
+                                        handleClick(seance)
                                     }}
                                 >
-                                    {seance.time}
+                                    {seance.seance_time}
                                 </button>
                             </li>
                         )

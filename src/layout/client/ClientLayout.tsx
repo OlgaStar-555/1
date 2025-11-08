@@ -1,11 +1,11 @@
 // ClientLayout.tsx
 import {Outlet} from 'react-router-dom';
-import {ClientContextProvider} from "./ClientContext.tsx";
+import {ClientProvider} from "./ClientProvider.tsx";
 
 export default function ClientLayout() {
     return (
-        <ClientContextProvider>
+        <ClientProvider>
             <Outlet/>
-        </ClientContextProvider>
+        </ClientProvider>
     );
 };

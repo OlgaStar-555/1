@@ -14,8 +14,6 @@ export default function Client() {
 
     const {allData} = useAllData()
 
-
-    console.log(useAllData())
     console.log('allData()')
     console.log(allData)
 
