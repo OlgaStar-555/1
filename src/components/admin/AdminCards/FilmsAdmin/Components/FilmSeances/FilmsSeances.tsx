@@ -61,12 +61,7 @@ export default function FilmsSeances({films, halls, seances}: FilmsSeancesProps)
         setDroppedItemsMap(seancesInHallMap)
     }, [halls, seances]);
 
-    const context = useAllData();
-
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-    const {refreshAllData} = context;
+    const {refreshAllData} = useAllData();
 
     const removeFilm = async (id: number) => {
         await API.removeFilm(id).then((data) => {
@@ -262,7 +257,8 @@ export default function FilmsSeances({films, halls, seances}: FilmsSeancesProps)
                                                             key={seance.id}
                                                             className='hall-box__seance'
                                                             style={{
-                                                                left: `${Math.floor((getNumFromTime(seance.seance_time ?? '')) / MINUTES_IN_DAY * 100)}%`
+                                                                left: `${Math.floor((getNumFromTime(seance.seance_time ?? '')) / MINUTES_IN_DAY * 100)}%`,
+                                                                minWidth: `${Math.floor((filmsMap.get(seance.seance_filmid)?.film_duration ?? 0) / MINUTES_IN_DAY * 100)}%`,
                                                             }}
                                                         >
                                                             <div className='seance__film-name'
@@ -273,7 +269,6 @@ export default function FilmsSeances({films, halls, seances}: FilmsSeancesProps)
                                                                      handleDragEnd(hall.id)
                                                                  }}
                                                                  style={{
-                                                                     width: `${Math.floor((filmsMap.get(seance.seance_filmid)?.film_duration ?? 0) / MINUTES_IN_DAY * 100)}%`,
                                                                      backgroundColor: filmsMap.get(seance.seance_filmid)?.bgColor
                                                                  }}
                                                             >

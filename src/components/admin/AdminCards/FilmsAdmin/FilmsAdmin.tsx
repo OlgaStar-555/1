@@ -4,11 +4,7 @@ import AddFilm from "./Components/AddFilm/AddFilm.tsx";
 import FilmsSeances from "./Components/FilmSeances/FilmsSeances.tsx";
 
 export default function FilmsAdmin() {
-    const context = useAllData();
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-    const {allData} = context;
+    const {allData} = useAllData();
 
     const BOX_ID = 'films-admin'
 

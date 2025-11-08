@@ -9,12 +9,7 @@ import type {HallControlProps} from "../../AdminList.tsx";
 
 
 export default function HallControl({halls}: HallControlProps) {
-    const context = useAllData();
-
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-    const {refreshAllData} = context;
+    const {refreshAllData} = useAllData();
 
     const removeHall = async (id: number) => {
         await API.removeHall(id).then((data) => {

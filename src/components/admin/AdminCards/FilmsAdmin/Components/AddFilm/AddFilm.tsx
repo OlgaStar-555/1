@@ -7,14 +7,9 @@ import useAllData from "../../../../../../context/AllDataContext.tsx";
 
 
 export default function AddFilm() {
-    const context = useAllData();
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-    const {refreshAllData} = context;
+    const {refreshAllData} = useAllData();
 
     const LOAD_FILE_ID = 'load-file'
-
 
     const [loading, setLoading] = useState<boolean>(false);
     const [isPopup, setIsPopup] = useState<boolean>(false);

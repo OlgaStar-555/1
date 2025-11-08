@@ -10,12 +10,7 @@ import SelectHall from "../../Components/SelectHall/SelectHall.tsx";
 
 export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConfigProps) {
 
-    const context = useAllData();
-
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-    const {refreshAllData} = context;
+    const {refreshAllData} = useAllData();
 
 
     const [activeHallId, setActiveHallId] = useState<number | undefined>(undefined)

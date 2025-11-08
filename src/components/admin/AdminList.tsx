@@ -22,13 +22,7 @@ export interface HallConfigProps extends HallControlProps    {
 
 export default function AdminList() {
 
-    const context = useAllData();
-
-    if (!context) {
-        throw new Error('ChildComponent должен быть обернут в AllDataProvider');
-    }
-
-    const {allData} = context;
+    const {allData} = useAllData();
 
     console.log('\n\n\t\tAdminList\n\n')
 
