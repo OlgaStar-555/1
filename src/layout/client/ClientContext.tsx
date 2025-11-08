@@ -19,7 +19,7 @@ export function ClientContextProvider({ children }: { children: ReactNode }) {
             {children}
         </ClientContext.Provider>
     );
-};
+}
 
 // Создаем хук для удобного использования
 const useClientContext = () => {

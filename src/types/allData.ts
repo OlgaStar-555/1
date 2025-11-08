@@ -5,7 +5,7 @@ export interface MovieFilm  {
   film_origin: string;
   film_poster: string;
   id: number;
-};
+}
 
 export interface MovieHall {
   hall_config: Array<Array<string>>;
@@ -16,17 +16,17 @@ export interface MovieHall {
   hall_price_vip: number;
   hall_rows: number;
   id: number;
-};
+}
 
 export interface MovieSeance {
   id: number;
   seance_filmid: number;
   seance_hallid: number;
   seance_time: string;
-};
+}
 
 export interface AllData {
   films?: MovieFilm[];
   halls?: MovieHall[];
   seances?: MovieSeance[];
-};
+}

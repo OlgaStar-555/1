@@ -44,7 +44,7 @@ export default function Popup({
         setTimeout(() => {
             setPopupClassName(activeClassName)
         }, 0)
-    }, []);
+    }, [activeClassName]);
 
 
     // const [isSubmit, SetIsSubmit] = useState(false)

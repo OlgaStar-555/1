@@ -13,10 +13,10 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
     const sortAllData = (allData: AllData) => {
         allData.seances?.sort((a, b) => {
 
-            if(a.seance_time < b.seance_time) {
+            if (a.seance_time < b.seance_time) {
                 return -1
             }
-            if(a.seance_time > b.seance_time) {
+            if (a.seance_time > b.seance_time) {
                 return 1
             }
             return 0
@@ -26,15 +26,14 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
             const hallNameA = a.hall_name.toLowerCase()
             const hallNameB = b.hall_name.toLowerCase()
 
-            if(hallNameA < hallNameB) {
+            if (hallNameA < hallNameB) {
                 return -1
             }
-            if(hallNameA > hallNameB) {
+            if (hallNameA > hallNameB) {
                 return 1
             }
             return 0
         })
-
 
 
     }
@@ -49,7 +48,6 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
 
                 setAllData(result);
 
-                console.log('\n\n\n\n\t\t\t!!!!!!!!!!!!!!!!!\t\tF E E E E\n\n');
                 console.log('\n\n\n\n\t\t\t!!!!!!!!!!!!!!!!!\t\tresult\n\n');
                 console.log(result);
             }
@@ -63,22 +61,12 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
 
         console.log(newData)
 
-
         console.log({...allData, ...newData})
-
 
         try {
             if (newData) {
-                const laaa = {...allData, ...newData}
-
-                console.log('laaa')
-                console.log(laaa)
-
                 setAllData((prevState) => {
                     const newState = {...prevState, ...newData}
-
-                    console.log({...prevState, ...newData})
-                    console.log(newState)
 
                     sortAllData(newState)
 
@@ -86,14 +74,18 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
                 })
             }
         } catch (error) {
-            console.error("Ошибка при получении данных: ", error);
-        } finally {
-            console.log('\n\n\nEND REFRESH\n\n\n')
+            console.error('Ошибка при получении данных: ', error);
         }
-    }, []);
+    }, [allData]);
 
     useEffect(() => {
-        fetchAllData();
+        (async () => {
+            try {
+                await fetchAllData();
+            } catch (error) {
+                console.error('Ошибка при получении данных: ', error);
+            }
+        })();
     }, [fetchAllData, refreshAllData]);
 
 
