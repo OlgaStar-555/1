@@ -10,30 +10,49 @@ export interface DataResponse {
 export default class API {
     private static SERVER_NAME: string = 'https://shfe-diplom.neto-server.ru/';
 
-    public static ALL = 'alldata'
-
     private static postfixList = {
+        allData: 'alldata',
         hall: 'hall',
         open: 'open',
         price: 'price',
         film: 'film',
         seance: 'seance',
+        hallConfig: 'hallconfig',
 
     }
 
-    public static async getAllData(
-        postfix: string = 'alldata',
-        options: RequestInit = {
-            method: "GET",
-        },
-    ): Promise<AllData | undefined> {
+    public static async getAllData(): Promise<AllData | undefined> {
 
         console.log('\n\n\t\t!!!\tgetAllData!!!\n\n')
 
-        return await fetch(`${API.SERVER_NAME}${postfix}`, options)
+        return await fetch(
+            `${API.SERVER_NAME}${this.postfixList.allData}`,
+            {method: "GET"}
+        )
             .then((response) => response.json())
             .then((data) => {
                 console.log("\n\n\n\t\tTHEN DATA");
+
+                console.table(data);
+
+
+                if (data.success) {
+                    return data.result;
+                }
+            });
+    }
+
+    public static async getHallConfig(seanceId: number, date: string): Promise<string[][] | undefined> {
+
+        console.log('\n\n\t\t!!!\tgetHallConfig!!!\n\n')
+
+        return await fetch(
+            `${API.SERVER_NAME}${this.postfixList.hallConfig}?seanceId=${seanceId}&date=${date}`,
+            {method: "GET"}
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("\n\n\n\t\tTHEN DATA \t!!!!\tgetHallConfig");
 
                 console.table(data);
 
