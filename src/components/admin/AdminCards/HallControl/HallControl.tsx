@@ -77,7 +77,7 @@ export default function HallControl({halls}: HallControlProps) {
                             setIsPopup(!isPopup)
                             setLoading(false)
                         }}
-                                className="button button_admin" type="button"
+                                className="button button_action" type="button"
                                 disabled={loading}>
                             {loading ? 'Loading...' : 'Создать зал'}
                         </button>

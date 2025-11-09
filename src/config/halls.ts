@@ -6,18 +6,12 @@ export const HALL_PLACE_TYPES_ADMIN = {
 
 export const hallPlaceTypesAdmin = Object.keys(HALL_PLACE_TYPES_ADMIN) as (keyof typeof HALL_PLACE_TYPES_ADMIN)[];
 
-console.log('hallPlaceTypesAdmin')
-
-console.log(hallPlaceTypesAdmin)
-
-
 export type HallPlaceTypesAdmin = keyof typeof HALL_PLACE_TYPES_ADMIN;
-
 
 export const HALL_PLACE_TYPES_CLIENT = {
     standart: 'Свобдно',
-    vip: 'Свобдно VIP',
     taken: 'Занято',
+    vip: 'Свобдно VIP',
     active: 'Выбрано'
 }
 

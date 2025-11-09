@@ -27,8 +27,8 @@ export const Router = createBrowserRouter([
                         element: <Client/>
                     },
                     {
-                        path: `${R.FILMS}/:seanceId`,
-                        id: `${R.FILMS}:seanceId`,
+                        path: `${R.FILMS}`,
+                        id: `${R.FILMS}`,
                         element: <HallClient/>,
                     },
                     {
@@ -47,8 +47,6 @@ export const Router = createBrowserRouter([
                     {
                         index: true,
                         element: <AdminList/>
-
-
                     },
                     {
                         path: R.AUTH,

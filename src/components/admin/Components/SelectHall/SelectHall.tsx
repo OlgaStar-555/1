@@ -14,7 +14,7 @@ export default function SelectHall({halls, activeHallId, handleClick, title}: Se
 
 
     return (
-        <section className="box box_buttons">
+        <section className="box box_buttons box_text-content">
             <h4 className="subtitle">{title || 'Выберите зал для конфигурации'}:</h4>
             <div className="row row_buttons">
                 {halls?.map((hall) => {

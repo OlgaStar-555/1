@@ -24,19 +24,15 @@ export default function AdminList() {
 
     const {allData} = useAllData();
 
-    console.log('\n\n\t\tAdminList\n\n')
-
     const [hallsMap, setHallsMap] = useState<Map<number, MovieHall>>(new Map())
 
     const memoizedSetHallsMap = useCallback((newMap: Map<number, MovieHall>) => {
         setHallsMap(newMap);
     }, [])
 
-
     return (
         <section className="card-list"
                  style={{'--t-duration': `${T_DURATION / 1_000}s`} as React.CSSProperties}
-
         >
             <HallControl halls={allData?.halls}/>
             <HallConfig halls={allData?.halls}
@@ -52,6 +48,5 @@ export default function AdminList() {
                        hallsMap={hallsMap}
                        setHallsMap={memoizedSetHallsMap}/>
         </section>
-
     )
 }

@@ -1,7 +1,7 @@
-.legend__list {
+.container_admin .legend__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.3rem;
+    gap: 1.2rem 2.3rem;
 }
 
 .legend-item {
@@ -9,9 +9,9 @@
     align-items: center;
     color: var(--color-sec-txt);
 }
-.legend-item .legend-item__marker marker_standart {
 
-}
-.legend-item .legend-item__title {
-
+.container_content .legend__list {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
 }

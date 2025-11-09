@@ -1,3 +1,3 @@
-.card__body >.button.button_admin {
+.card_admin:not(.card_auth) .card__body >.button.button_action {
     align-self: flex-start;
 }

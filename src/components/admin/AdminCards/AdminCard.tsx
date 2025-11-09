@@ -15,7 +15,7 @@ export default function AdminCard({title, boxId, children} : AdminCardProps) {
             <input type="checkbox" id={CHECKBOX_ID} className="accordion__checkbox" defaultChecked/>
             <header className="card__header">
                 <label htmlFor={CHECKBOX_ID} className="accordion__button">
-                    <h2 className="title">
+                    <h2 className="title card__title">
                         {title}
                     </h2>
                 </label>

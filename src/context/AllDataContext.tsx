@@ -16,13 +16,6 @@ const useAllData = () => {
     if (context === undefined) {
         throw new Error('useAllData must be used within a AllDataProvider');
     }
-    console.log('context')
-
-    console.log(context)
-
-    console.log(context.allData)
-
-
 
     return context;
 };

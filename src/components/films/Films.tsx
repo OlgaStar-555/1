@@ -2,7 +2,7 @@ import "./Fims.css";
 
 import Card from "./Card";
 
-import {type ReactNode, useState} from "react";
+import {type ReactNode} from "react";
 
 import type {FilmProps} from "./Card";
 import type {AllData, MovieSeance} from "../../types/allData.ts";
@@ -17,24 +17,25 @@ export interface TicketProps {
     seance: MovieSeance | null;
 }
 
-
 export default function Films({halls, seances, films}: AllData): ReactNode {
-
-    const [ticketProps, setTicketProps] = useState<TicketProps | undefined>({
-        seance: null
-    })
 
     if (halls && seances && films) {
         const hallsMap = new Map(halls.map((hall) => [hall.id, hall]));
 
-        const seancesMap = new Map(seances.map((seanse) => [seanse.id, seanse]));
+        const seancesMap = new Map(seances.map((seance) => [seance.id, seance]));
 
         const filmProps = films.map((film): FilmProps => {
-            const filmHalls = new Map<number, FilmHall>();
 
+            const filmHalls = new Map<number, FilmHall>();
 
             seancesMap.forEach((seance: MovieSeance, key: number) => {
                 if (film.id === seance.seance_filmid) {
+                    if (hallsMap.get(seance.seance_hallid)?.hall_open === undefined
+                        || hallsMap.get(seance.seance_hallid)?.hall_open === 0) {
+
+                        return
+                    }
+
                     if (filmHalls.has(seance.seance_hallid)) {
                         filmHalls
                             .get(seance.seance_hallid)
@@ -55,15 +56,12 @@ export default function Films({halls, seances, films}: AllData): ReactNode {
                 ...film,
                 filmHalls: filmHalls,
                 setSeance: (id: number) => {
-                    console.log('\n\n\t\tticketProps')
-                    console.table(ticketProps)
-
-                    setTicketProps((prevProps: TicketProps | undefined) => {
+                    return (prevProps: TicketProps | undefined) => {
                         const seance = seances?.find(item => item.id === id)
                         if (seance != undefined) {
                             return {...prevProps, seance}
                         }
-                    })
+                    }
                 }
             };
         });

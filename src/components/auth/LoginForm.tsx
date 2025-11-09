@@ -13,7 +13,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState<string>('');
 
     const [loading, setLoading] = useState<boolean>(false);
-    const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+    const [isSuccess, setIsSuccess] = useState<boolean | undefined>(undefined);
     const [message, setMessage] = useState<string>('');
 
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ export default function LoginForm() {
         event.preventDefault();
 
         setLoading(true);
-        setIsSuccess(null);
+        setIsSuccess(undefined);
         setMessage('');
 
         const loginData: LoginRequest = {login, password};
@@ -38,9 +38,7 @@ export default function LoginForm() {
         } else {
             const data: DataResponse = await response.json();
 
-            console.log('Данные ответа:', data);
-
-            setIsSuccess(data.success)
+            setIsSuccess(data?.success)
 
             if (data.success) {
                 navigate(`${ROOT}${ADMIN}`)
@@ -82,7 +80,7 @@ export default function LoginForm() {
                         className="field__input"
                     />
                 </div>
-                <button className="button button_admin" type="submit" disabled={loading}>
+                <button className="button button_action" type="submit" disabled={loading}>
                     {loading ? 'Вход...' : 'Авторизоватьcя'}
                 </button>
                 {isSuccess === false && <p style={{color: 'red'}}>{message}</p>}

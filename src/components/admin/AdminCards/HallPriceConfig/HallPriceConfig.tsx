@@ -77,7 +77,7 @@ export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConf
             <AdminCard boxId={BOX_ID} title="Конфигурация цен">
                 <>
                     <SelectHall halls={halls} activeHallId={activeHallId} handleClick={setActiveHallId}/>
-                    <section className="box">
+                    <section className="box box_text-content">
                         <h4 className="subtitle">Установите цены для типов кресел:</h4>
                         <HallPrice priceStandart={priceStandart}
                                    setPriceStandart={setPriceStandart}
@@ -85,10 +85,10 @@ export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConf
                                    setPriceVip={setPriceVip}/>
                     </section>
                     <div className='button-list'>
-                        <button onClick={saveConfig} className="button button_admin" type="button">
+                        <button onClick={saveConfig} className="button button_action" type="button">
                             Сохранить
                         </button>
-                        <button onClick={cancelConfig} className="button button_admin button_cancel" type="button">
+                        <button onClick={cancelConfig} className="button button_action button_cancel" type="button">
                             Отмена
                         </button>
                     </div>

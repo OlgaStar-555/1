@@ -1,5 +1,4 @@
 import "./Fims.css";
-// import { useState } from "react";
 
 import type {MovieFilm, MovieSeance} from "../../types/allData.ts";
 import type {FilmHall} from "./Films.tsx";
@@ -11,9 +10,7 @@ import {getNumFromTime} from "../../functions.ts";
 export interface FilmProps extends MovieFilm {
     filmHalls?: Map<number, FilmHall>;
     setSeance: (id: number) => void
-
 }
-
 
 export default function Card(props: FilmProps) {
 
@@ -21,19 +18,10 @@ export default function Card(props: FilmProps) {
 
     const navigate = useNavigate()
 
-    console.log(`\n\n\n\n\t\tCARD\t${props.film_name}\n\n`);
-
-    console.table(props)
-
-
-
-    console.log("props.filmHalls");
-    console.log(props.filmHalls);
-
     const handleClick = (seance: MovieSeance): void => {
         props.setSeance(seance.id)
 
-        navigate(`${FILMS}/${seance.id}`)
+        navigate(`${FILMS}/?seanceId=${seance.id}&date=${activeDate}`)
     };
 
     const items: React.ReactNode[] = [];

@@ -1,4 +1,4 @@
-.row[class*="_row_header"] {
+.bg-img__admin ~ .row[class*="_row_header"] {
     padding-left: clamp(1.4rem, 10vw, 9.9rem);
 }
 
@@ -26,10 +26,18 @@
     line-height: 2.5rem;
 }
 
-.card__body {
+.card_admin .card__body {
     background-color: var(--card-body-bg);
+}
+
+.card_admin:not(.card_auth) .card__body {
     padding: var(--card-padding-top) 3.2rem var(--card-padding-top) var(--card-padding-left);
 }
+
+.card_admin.card_auth .card__body {
+    padding: var(--card-padding-top) 3.2rem;
+}
+
 
 .card__text-field .field__title {
     font-size: 1.2rem;
@@ -43,29 +51,34 @@
     border: 1px solid #b7b7b7;
     font-size: 1.6rem;
     line-height: 1;
-    padding: .8rem .88rem .9rem  .88rem;
+    padding: .8rem .88rem .9rem .88rem;
 }
 
 .card__text-field .field__input::placeholder {
     color: #757575;
 }
 
-.button.button_admin {
-    box-shadow: 0 0 .3rem 0 #0000001f, 0 .3rem .3rem 0 #0000003d;
-    padding: 1.12rem 3.155rem 1.19rem 3.193rem;
-    border-radius: .3rem;
+.row.row_buttons {
+    overflow: auto;
 }
 
-.card .button.button_admin {
-    text-transform: uppercase;
+.button.button_action {
+    padding-left: 3.193rem;
+    padding-right: 3.155rem;
 }
 
-.card .button.button_admin:not(.button_cancel) {
-    background-color: #16a6af;
-    color: #ffffff;
-}
-.card .button.button_admin.button_cancel {
-    background-color: #ffffff;
-    color: #63536c;
-}
+@media screen and (max-width: 560px) {
+    .card.card_admin {
+        --card-padding-left: clamp(3.5rem, calc(50vw - 125px), 10.4rem);
 
+    }
+
+    .card.card_admin .card-list {
+        --card-padding-left: clamp(3.5rem, calc(4.5rem + var(--circle-size)), 10.4rem);
+
+    }
+
+    .card_admin:not(.card_auth) .card__body {
+        padding: var(--card-padding-top) clamp(2rem, calc(10vw - 8px), 3.2rem)
+    }
+}

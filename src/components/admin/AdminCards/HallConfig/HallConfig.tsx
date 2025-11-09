@@ -29,14 +29,12 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
         if (numRows > 0 && numCols > 0) {
             const newArr: string[][] = Array.from({length: numRows}, () =>
                 Array.from({length: numCols}, () => hallPlaceTypesAdmin[0]))
-
             setActiveHall(newArr)
         }
     }
 
     const [rowCount, setRowCount] = useState<number>(0)
     const [colCount, setColCount] = useState<number>(0)
-
 
     useEffect(() => {
         if (halls && halls.length > 0) {
@@ -88,8 +86,6 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
                     refreshAllData({halls: newHalls})
                     return data
                 }
-
-
             })
         }
     }
@@ -101,13 +97,11 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
     }
 
     const handleHallChange = (row: number, col: number) => {
-        // Создаём новую копию всего массива, чтобы React увидел изменение
         const newHall = activeHall.map(rowArr => [...rowArr]);
 
         const newPlaceTypeNum = (hallPlaceTypesAdmin.indexOf(newHall[row][col] as HallPlaceTypesAdmin) + 1) % hallPlaceTypesAdmin.length;
         newHall[row][col] = hallPlaceTypesAdmin[newPlaceTypeNum];
 
-        // Обновляем состояние
         setActiveHall(newHall);
     };
 
@@ -116,7 +110,7 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
             <AdminCard boxId={BOX_ID} title="Конфигурация залов">
                 <>
                     <SelectHall halls={halls} activeHallId={activeHallId} handleClick={selectHall}/>
-                    <section className="box box_sizes">
+                    <section className="box box_sizes box_text-content">
                         <h4 className="subtitle">Укажите количество рядов и максимальное количество кресел в ряду:</h4>
                         <HallSizes
                             rowCount={rowCount}
@@ -125,7 +119,7 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
                             setColCount={setColCount}
                             createNewArr={createNewArr}/>
                     </section>
-                    <section className="box box_legend">
+                    <section className="box box_legend box_text-content">
                         <h4 className="subtitle">Теперь вы можете указать типы кресел на схеме зала:</h4>
                         <Legend hallPlaceTypes={hallPlaceTypesAdmin} hallPlaceTypesRu={HALL_PLACE_TYPES_ADMIN}/>
                     </section>
@@ -159,10 +153,10 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
                         </div>
                     </section>
                     <div className='button-list'>
-                        <button onClick={saveConfig} className="button button_admin" type="button">
+                        <button onClick={saveConfig} className="button button_action" type="button">
                             Сохранить
                         </button>
-                        <button onClick={cancelConfig} className="button button_admin button_cancel" type="button">
+                        <button onClick={cancelConfig} className="button button_action button_cancel" type="button">
                             Отмена
                         </button>
                     </div>

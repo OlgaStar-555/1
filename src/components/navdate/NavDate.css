@@ -1,5 +1,5 @@
 .nav-line {
-    --button-width: 12.4rem;
+    --button-width: clamp(5rem, 12.525253vw, 12.4rem);
     --button-padding: 1rem;
     --active-button-padding: 1.1rem;
     margin-bottom: 1rem;
@@ -35,14 +35,14 @@
 }
 
 .nav-line__item.active {
-    flex-basis: 24.1rem;
+    flex-basis: clamp(7.5rem, calc(25vw - 6px), 24.1rem);
     --button-padding: var(--active-button-padding);
 }
 
 .nav-line__button {
     box-shadow: 0 0 .2rem 0 #0000001f, 0 .2rem .2rem 0 #0000003d;
     background-color: var(--bg-color);
-    padding: var(--button-padding) calc(2 * var(--button-padding));
+    padding: var(--button-padding) clamp(var(--button-padding), calc(3vw - 2px), calc(2 * var(--button-padding)));
     border: none;
     border-radius: .2rem;
     flex: 0 1 100%;
@@ -95,4 +95,17 @@
 
 .nav-line__nav .nav-line__button:not(.active) {
     display: none;
+}
+
+@media screen and (max-width: 560px){
+    .nav-line {
+        --button-width: max(4rem, calc(14vw - 5px));
+        --active-button-padding: 1rem;
+    }
+
+    .nav-line__item.active {
+        flex-basis: max(6rem, calc(20vw - 3px));
+        font-size: 1.2rem;
+    }
+
 }

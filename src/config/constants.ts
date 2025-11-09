@@ -1,3 +1,4 @@
+export const CONTENT_WIDTH = 990;
 export const LENGTH_OF_DAY = 24 * 60 * 60 * 1000;
 
 export const T_DURATION = 500

@@ -1,8 +1,5 @@
-.card.card_admin .box {
 
-}
-
-.card.card_admin .box .subtitle {
+.card.card_admin .box.box_text-content .subtitle {
     margin-bottom: .75em;
 }
 
@@ -35,8 +32,6 @@
 }
 
 
-
-
 .hall-config {
     border: 1px solid #000000
 }
@@ -48,38 +43,72 @@
 }
 
 
-
 .hall-config__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2.3rem;
-    padding: 2.5rem 2.6rem 2.6rem;
-    border: 1px solid #000000;
 
 }
 
-.hall-config__wrapper::before {
+.container_admin .hall-config__wrapper {
+    padding: 2.5rem 2.6rem 2.6rem;
+    border: 1px solid #000000;
+}
+
+.container_content .hall-config__wrapper {
+    padding: 3rem 0;
+}
+
+.container_admin .hall-config__wrapper::before {
     content: 'экран';
-    display: block;
     font-size: 1.6rem;
     line-height: 1.125;
     letter-spacing: 1.9rem;
     padding-left: 19px;
-     text-align: center;
+    text-align: center;
     vertical-align: middle;
     text-transform: uppercase;
 }
 
+.container_content .hall-config__wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1.8rem;
+    background-image: url('/src/img/screen.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+}
+
+.hall-config__wrapper::before {
+    display: block;
+
+}
+
 .hall-config__places {
     display: grid;
-    gap: 1rem;
     padding: 0 1rem 1rem;
     max-width: 100%;
     max-height: 80dvh;
     overflow: auto;
+    gap: var(--hall-gap);
 }
 
-.hall-config__places button {
-    font-size: 8px;
+.container_admin .box_hall-config {
+    --hall-gap: 1rem;
+}
+
+.container_content .box_hall-config {
+    --hall-gap: .4rem;
+    --scaled-place-size: 2rem;
+    --scaled-hall-gap: .4rem;
+
+}
+
+.container_content .hall-config__places {
+    --place-size: var(--scaled-place-size, 2rem);
+    --hall-gap: var(--scaled-hall-gap, .4rem);
 }

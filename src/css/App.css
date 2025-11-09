@@ -37,3 +37,30 @@
 .text.text_capitalize {
     text-transform: capitalize;
 }
+
+.color_red {
+    color: #de2121;
+}
+
+.button.button_action {
+    box-shadow: 0 0 .3rem 0 #0000001f, 0 .3rem .3rem 0 #0000003d;
+    padding-top: 1.12rem;
+    padding-bottom: 1.19rem;
+    border-radius: .3rem;
+    font-weight: 500;
+}
+
+.button.button_action {
+    text-transform: uppercase;
+}
+
+.button.button_action:not(.button_cancel) {
+    background-color: #16a6af;
+    color: #ffffff;
+}
+
+.button.button_action.button_cancel {
+    background-color: #ffffff;
+    color: #63536c;
+}
+

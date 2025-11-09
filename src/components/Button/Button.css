@@ -1,0 +1,18 @@
+.container_content .button.button_action {
+    padding-left: 5.7rem;
+    padding-right: 5.7rem;
+    max-width: min(100%, calc(100vw - 30px));
+}
+
+.button.button_action:disabled {
+    background-color: var(--color-sec-txt);
+    cursor: default;
+}
+
+@media screen and (max-width: 360px) {
+    .container_content .button.button_action {
+        width: 100%;
+        padding-left: min(10vw, 3rem);
+        padding-right: min(10vw, 3rem);
+    }
+}

@@ -1,5 +1,9 @@
-:root {
+.container_admin {
     --place-size: 2.6rem;
+}
+
+.container_content {
+    --place-size: 2rem;
 }
 
 .hall-place {
@@ -9,21 +13,46 @@
     border-style: solid;
     border-radius: 4px;
     background-color: transparent;
+
+}
+
+.hall-place:not(:disabled) {
+    cursor: pointer;
 }
 
 .container_admin .hall-place.hall-place_standart {
     border-color: #393939;
     background-color: #C4C4C4;
-;
 }
 
 .container_admin .hall-place.hall-place_vip {
     border-color: #0A828A;
     background-color: #B0D6D8;
     background-image: url("../../img/hall-place-bg.png");
-;
 }
 
 .container_admin .hall-place.hall-place_disabled {
     border-color: var(--color-sec-txt);
+}
+
+.container_content .hall-place {
+    border-color: #525252;
+}
+
+.container_content .hall-place.hall-place_standart {
+    background-color: #ffffff;
+}
+
+.container_content .hall-place.hall-place_vip {
+    background-color: #f9953a;
+}
+
+.container_content .hall-place.hall-place_taken {
+    pointer-events: none;
+    cursor: default;
+}
+
+.container_content .hall-place.active:is(.hall-place_standart, .hall-place_vip) {
+    background-color: #25C4CE;
+    box-shadow: 0 0 4px 0 #16a6af;
 }

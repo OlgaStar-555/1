@@ -1,8 +1,9 @@
 import type {AllData, MovieHall} from "./types/allData.ts";
 import type {LoginRequest} from "./types/login.ts";
+import type {TicketForSend, TicketProps} from "./layout/client/paymentTypes.ts";
 
 export interface DataResponse {
-    success: boolean,
+    success?: boolean,
     result?: unknown,
     error?: string
 }
@@ -18,12 +19,10 @@ export default class API {
         film: 'film',
         seance: 'seance',
         hallConfig: 'hallconfig',
-
+        ticket: 'ticket'
     }
 
     public static async getAllData(): Promise<AllData | undefined> {
-
-        console.log('\n\n\t\t!!!\tgetAllData!!!\n\n')
 
         return await fetch(
             `${API.SERVER_NAME}${this.postfixList.allData}`,
@@ -31,20 +30,15 @@ export default class API {
         )
             .then((response) => response.json())
             .then((data) => {
-                console.log("\n\n\n\t\tTHEN DATA");
-
-                console.table(data);
-
-
-                if (data.success) {
+                if (data?.success) {
                     return data.result;
+                } else {
+                    console.error(data?.error)
                 }
             });
     }
 
     public static async getHallConfig(seanceId: number, date: string): Promise<string[][] | undefined> {
-
-        console.log('\n\n\t\t!!!\tgetHallConfig!!!\n\n')
 
         return await fetch(
             `${API.SERVER_NAME}${this.postfixList.hallConfig}?seanceId=${seanceId}&date=${date}`,
@@ -52,13 +46,10 @@ export default class API {
         )
             .then((response) => response.json())
             .then((data) => {
-                console.log("\n\n\n\t\tTHEN DATA \t!!!!\tgetHallConfig");
-
-                console.table(data);
-
-
-                if (data.success) {
+                if (data?.success) {
                     return data.result;
+                } else {
+                    console.error(data?.error)
                 }
             });
     }
@@ -71,32 +62,24 @@ export default class API {
             },
             body: JSON.stringify(loginData),
         });
-
-
     }
 
-
     public static async removeHall(id: number): Promise<AllData | undefined> {
-        console.log('API removeHall', id)
-
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`, {
             method: 'DELETE',
         })
             .then(response => response.json())
             .then((data) => {
-                console.log(data)
                 if (data?.success) {
                     return data?.result
+                } else {
+                    console.error(data?.error)
                 }
             })
-
-
     }
 
     public static async removeFilm(id: number): Promise<AllData | undefined> {
-        console.log('API removeFilm', id)
-
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.film}/${id}`,
             {
@@ -104,38 +87,33 @@ export default class API {
             })
             .then(response => response.json())
             .then((data) => {
-                console.log(data)
                 if (data?.success) {
                     return data?.result
+                } else {
+                    console.error(data?.error)
                 }
             })
-
-
     }
 
     public static async removeSeance(id: string): Promise<AllData | undefined> {
-        console.log('API removeSeance', id)
-
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.seance}/${id}`, {
             method: 'DELETE',
         })
             .then(response => response.json())
             .then((data) => {
-                console.log(data)
                 if (data?.success) {
                     return data?.result
+                } else {
+                    console.error(data?.error)
                 }
             })
-
-
     }
 
     public static async addHall(hallName: string): Promise<AllData | undefined> {
         if (hallName === '') {
             return
         }
-        console.log('API addHall', hallName)
 
         const params = new FormData()
         params.set('hallName', hallName)
@@ -146,8 +124,10 @@ export default class API {
         })
             .then(response => response.json())
             .then((data) => {
-                    if (data.success) {
+                    if (data?.success) {
                         return data.result;
+                    } else {
+                        console.error(data?.error)
                     }
                 }
             );
@@ -162,28 +142,20 @@ export default class API {
 
         Promise<AllData | undefined> {
 
-        console.log('ADDDDDDDD')
-        console.log(filmName)
-
-
         if (filmName === '') {
             return
         }
-        console.log('API addFilm', filmName)
-
 
         const params = new FormData()
+
         params.set('filmName', filmName)
         params.set('filmDuration', filmDuration)
         params.set('filmDescription', filmDescription)
         params.set('filmOrigin', filmOrigin)
 
-
         if (filePoster !== null) {
             params.set('filePoster', filePoster)
         }
-
-        console.table(params)
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.film}`, {
             method: 'POST',
@@ -191,15 +163,39 @@ export default class API {
         })
             .then(response => response.json())
             .then((data) => {
-                    if (data.success) {
+                    if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data)
+                        console.error(data?.error)
                     }
                 }
             );
+    }
 
+    public static async addTickets(seanceId: number,
+                                   ticketDate: string,
+                                   tickets: TicketForSend[]
+    ): Promise<TicketProps[] | undefined> {
 
+        const params = new FormData()
+
+        params.set('seanceId', seanceId.toString())
+        params.set('ticketDate', ticketDate.toString())
+        params.set('tickets', JSON.stringify(tickets))
+
+        return await fetch(`${API.SERVER_NAME}${API.postfixList.ticket}`, {
+            method: 'POST',
+            body: params
+        })
+            .then(response => response.json())
+            .then((data) => {
+                    if (data?.success) {
+                        return data.result;
+                    } else {
+                        console.error(data?.error)
+                    }
+                }
+            );
     }
 
 
@@ -214,25 +210,20 @@ export default class API {
         params.set('seanceFilmid', seanceFilmId)
         params.set('seanceTime', seanceTime)
 
-        console.table(params)
-
         return await fetch(`${API.SERVER_NAME}${API.postfixList.seance}`, {
             method: 'POST',
             body: params
         })
             .then(response => response.json())
             .then((data) => {
-                    if (data.success) {
+                    if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data)
+                        console.error(data?.error)
                     }
                 }
             );
-
-
     }
-
 
     public static async setConfigOfHall(
         id: number,
@@ -241,20 +232,16 @@ export default class API {
         arrayConfig: string[][]
     ):
         Promise<MovieHall | undefined> {
-        if (arrayConfig.length === 0 || arrayConfig?.[0].length === 0
-        ) {
+
+        if (arrayConfig.length === 0 || arrayConfig?.[0].length === 0) {
             return
         }
-        console.log('API CONFIG\n\n', arrayConfig)
 
         const params = new FormData()
+
         params.set('rowCount', rowCount.toString())
         params.set('placeCount', colCount.toString())
         params.set('config', JSON.stringify(arrayConfig))
-
-        console.log(params)
-        console.log(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`)
-
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`, {
             method: 'POST',
@@ -262,37 +249,26 @@ export default class API {
         })
             .then(response => response.json())
             .then((data) => {
-                    console.log(data)
-                    if (data.success) {
+                    if (data?.success) {
                         return data.result;
+                    } else {
+                        console.error(data?.error)
                     }
                 }
             );
     }
 
     public static async setPriceOfHall(
-        id
-            :
-            number,
-        priceStandart
-            :
-            number,
-        priceVip
-            :
-            number,
+        id: number,
+        priceStandart: number,
+        priceVip: number,
     ):
         Promise<MovieHall | undefined> {
 
-
-        console.log(`API CONFIG PRICE \n\n', ${priceStandart} <==> ${priceVip}`)
-
         const params = new FormData()
+
         params.set('priceStandart', priceStandart.toString())
         params.set('priceVip', priceVip.toString())
-
-        console.log(`${API.SERVER_NAME}${API.postfixList.price}/${id}`)
-
-        console.log(params)
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.price}/${id}`, {
             method: 'POST',
@@ -300,9 +276,10 @@ export default class API {
         })
             .then(response => response.json())
             .then((data) => {
-                    console.log(data)
-                    if (data.success) {
+                    if (data?.success) {
                         return data.result;
+                    } else {
+                        console.error(data?.error)
                     }
                 }
             );
@@ -310,8 +287,6 @@ export default class API {
 
 
     public static async openHall(hallId: number, hallOpen: boolean): Promise<AllData | undefined> {
-        console.log('API openHall', hallId)
-        console.log('API openHall', hallOpen)
 
         const params = new FormData()
         params.set('hallOpen', hallOpen ? '1' : '0')
@@ -322,22 +297,13 @@ export default class API {
         })
             .then(response => response.json())
             .then((data) => {
-                    console.log('\n\n\t\t\tAPI data')
-                    console.log(data)
-
-                    if (data.success) {
-
-                        console.log(data)
-                        console.log(data.result)
-
+                    if (data?.success) {
                         return data.result;
-
+                    } else {
+                        console.error(data?.error)
                     }
                 }
             )
-
     }
-
-
 }
 

@@ -38,7 +38,6 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
 
     }
 
-
     const fetchAllData = useCallback(async () => {
         try {
             const result = await API.getAllData();
@@ -48,8 +47,6 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
 
                 setAllData(result);
 
-                console.log('\n\n\n\n\t\t\t!!!!!!!!!!!!!!!!!\t\tresult\n\n');
-                console.log(result);
             }
         } catch (error) {
             console.error("Ошибка при получении данных: ", error);
@@ -81,7 +78,6 @@ const AllDataProvider = ({children}: AllDataProviderProps) => {
             }
         })();
     }, [fetchAllData, refreshAllData]);
-
 
     return (
         <AllDataContext.Provider value={{allData, setAllData, fetchAllData, refreshAllData}}>

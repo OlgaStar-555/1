@@ -75,7 +75,7 @@ export default function AddFilm() {
             name: 'loadPoster',
             btnTitle: 'Загрузить постер',
             element:
-                <label className='button button_admin button_load-file' htmlFor={LOAD_FILE_ID}>
+                <label className='button button_action button_load-file' htmlFor={LOAD_FILE_ID}>
                     <input id={LOAD_FILE_ID}
                            className='button__load-file'
                            onChange={
@@ -93,6 +93,7 @@ export default function AddFilm() {
                                }
                            }
                            type='file' accept='.png'/>
+                    <span>Загрузить постер</span>
                 </label>,
             isSubmit: false,
         }
@@ -105,7 +106,7 @@ export default function AddFilm() {
                 setIsPopup(true)
                 setLoading(false)
             }}
-                    className="button button_admin" type="button"
+                    className="button button_action" type="button"
                     disabled={loading}>
                 {loading ? 'Loading...' : 'Добавить фильм'}
             </button>

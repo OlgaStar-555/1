@@ -6,12 +6,10 @@ import {Outlet, useLocation} from "react-router-dom";
 import {ADMIN} from "./config/configRouter.ts";
 
 export default function App() {
-    console.log("\n\n\n\t\tApp\n\n")
 
     const location = useLocation()
 
     const isAdmin = location.pathname.includes(ADMIN)
-
 
     return (
         <>

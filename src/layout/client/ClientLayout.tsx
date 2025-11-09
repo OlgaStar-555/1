@@ -1,4 +1,3 @@
-// ClientLayout.tsx
 import {Outlet} from 'react-router-dom';
 import {ClientProvider} from "./ClientProvider.tsx";
 

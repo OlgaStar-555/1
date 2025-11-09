@@ -19,7 +19,6 @@ interface PopupProps {
     title: string;
 }
 
-
 export default function Popup({
                                   setIsPopup,
                                   children,
@@ -37,7 +36,6 @@ export default function Popup({
         }, T_DURATION)
     }
 
-
     const [popupClassName, setPopupClassName] = useState(defaultClassName)
 
     useEffect(() => {
@@ -46,19 +44,10 @@ export default function Popup({
         }, 0)
     }, [activeClassName]);
 
-
-    // const [isSubmit, SetIsSubmit] = useState(false)
-
-    // const actBtn = (handler: (data: unknown) => void) => {
-    //     handler()
-    //     closePopup()
-    // }
-
-
     return (
         <div className={popupClassName} style={{transitionDuration: `var(--t-duration)`}}>
             <div className="popup__wrapper">
-                <article className="card card_admin ">
+                <article className="card card_admin">
                     <div className="card__header">
                         <h3 className="title">
                             {title}
@@ -83,7 +72,7 @@ export default function Popup({
                                         element !== undefined ?
                                             element
                                             : <button key={name}
-                                                      className='button button_admin'
+                                                      className='button button_action'
                                                       type={isSubmit ? 'submit' : 'button'}
                                                       onClick={handler}
                                             >
@@ -92,7 +81,7 @@ export default function Popup({
                                     )
                                 })
                             }
-                            <button className="button button_admin button_cancel" onClick={closePopup} type="button">
+                            <button className="button button_action button_cancel" onClick={closePopup} type="button">
                                 Отменить
                             </button>
                         </div>

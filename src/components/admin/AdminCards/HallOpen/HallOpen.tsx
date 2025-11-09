@@ -68,7 +68,7 @@ export default function HallOpen({halls, hallsMap, setHallsMap}: HallConfigProps
                     <div style={{
                         textAlign: 'center'
                     }}>
-                        <button onClick={saveConfig} className="button button_admin" type="button">
+                        <button onClick={saveConfig} className="button button_action" type="button">
                             {(hallOpen) ? 'Закрыть' : 'Открыть'} продажу билетов
                         </button>
                     </div>

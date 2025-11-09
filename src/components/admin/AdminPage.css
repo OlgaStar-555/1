@@ -10,26 +10,26 @@
 }
 
 .card-list > .card_admin {
-    --circle--size: 4.4rem;
+    --circle-size: 4.4rem;
 }
 
 
-.card-list > .card_admin>.card__header {
+.card-list > .card_admin > .card__header {
     padding-left: var(--card-padding-left);
     padding-right: var(--admin-size);
 
 }
 
-.card-list > .card_admin>.card__header:has(>.accordion__button) {
+.card-list > .card_admin > .card__header:has(>.accordion__button) {
     padding: 0;
 }
 
-.card-list .card.card_admin>.card__header::before {
+.card-list .card.card_admin > .card__header::before {
     content: '';
     position: absolute;
-    left: calc(var(--card-padding-left) - var(--admin-size) - var(--circle--size) / 2);
-    width: var(--circle--size);
-    height: var(--circle--size);
+    left: calc(var(--card-padding-left) - var(--admin-size) - var(--circle-size) / 2);
+    width: var(--circle-size);
+    height: var(--circle-size);
     border-radius: 50%;
     background-color: #fff;
     transform: translateY(-25%);
@@ -37,12 +37,12 @@
     z-index: 1;
 }
 
-.card-list > .card_admin>.card__header:has(>.accordion__button)::before {
+.card-list > .card_admin > .card__header:has(>.accordion__button)::before {
     top: var(--card-padding-top);
 }
 
 
-.card-list > .card_admin>.card__header::after {
+.card-list > .card_admin > .card__header::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -52,33 +52,34 @@
     transform: translateX(-50%);
 }
 
-.card-list > .card_admin:first-of-type>.card__header::after {
+.card-list > .card_admin:first-of-type > .card__header::after {
     height: 70%;
 }
 
-.card-list > .card_admin + .card_admin>.card__header::after {
+.card-list > .card_admin + .card_admin > .card__header::after {
     height: 100%;
 }
 
-.card-list > .card_admin + .card_admin:last-of-type>.card__header::after {
+.card-list > .card_admin + .card_admin:last-of-type > .card__header::after {
     height: 50%;
     bottom: auto;
     top: 0;
 }
 
-.card-list > .card_admin>.card__header>.accordion__button {
+.card-list > .card_admin > .card__header > .accordion__button {
     padding: var(--card-padding-top) var(--admin-size) var(--card-padding-top) var(--card-padding-left);
 }
 
-.card-list > .card_admin .card__header .title {
+.card-list > .card_admin .card__header .title.card__title {
     padding-right: 2rem;
     background-image: url('/src/img/acrdn-head-arrow.png');
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 2.4rem;
+    font-weight: 700;
 }
 
-.card-list > .card_admin .card__body {
+.card-list > .card_admin > .card__body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,10 +101,6 @@
 .card_accordion:last-of-type > .accordion__checkbox:not(:checked) ~ .card__body {
     padding-top: 0;
     padding-bottom: 0;
-
-}
-
-.card_accordion > .accordion__checkbox:checked ~ .card__body {
 
 }
 
@@ -136,4 +133,31 @@
     display: flex;
     justify-content: center;
     gap: 1em;
+}
+
+
+@media screen and (max-width: 600px) {
+    .card-list > .card.card_admin {
+        --circle-size: clamp(2.2rem, calc(15vw - 3rem), 4.4rem);
+        --card-padding-left: clamp(3.5rem, calc(var(--circle-size) + 4.5rem), 10.4rem)
+    }
+
+    .card-list > .card_admin > .card__header:has(>.accordion__button)::before {
+        top: calc(50% - var(--circle-size) / 2);
+        transform: none;
+    }
+
+    .card-list > .card_admin > .card__header::after {
+        display: none;
+    }
+
+    .card-list > .card_admin:not(:last-of-type) .card__body::before {
+        display: none;
+    }
+
+    .card-list > .card_admin > .card__header > .accordion__button {
+        padding-right: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }

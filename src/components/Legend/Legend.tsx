@@ -6,14 +6,26 @@ import {
 } from "../../config/halls.ts";
 import {HALL_PLACE_CLASS_NAME} from "../../config/constants.ts";
 
-
 type HallPlaceTypes = HallPlaceTypesAdmin | HallPlaceTypesClient
+
+interface PriceList {
+    standart: number | undefined;
+    vip: number | undefined;
+}
 
 interface LegendProps {
     hallPlaceTypes: (keyof typeof HALL_PLACE_TYPES_ADMIN)[] | (keyof typeof HALL_PLACE_TYPES_CLIENT)[];
     hallPlaceTypesRu: typeof HALL_PLACE_TYPES_ADMIN | typeof HALL_PLACE_TYPES_CLIENT;
+    isClient?: boolean;
+    priceList?: PriceList;
 }
-export default function Legend({hallPlaceTypes, hallPlaceTypesRu} :LegendProps) {
+
+export default function Legend({
+                                   hallPlaceTypes,
+                                   hallPlaceTypesRu,
+                                   isClient,
+                                   priceList
+                               }: LegendProps) {
     return (
         <ul className="legend__list">
             {hallPlaceTypes.map((item: HallPlaceTypes) => {
@@ -23,7 +35,12 @@ export default function Legend({hallPlaceTypes, hallPlaceTypesRu} :LegendProps) 
                     <li key={key} className="legend-item">
                         <div className={`${HALL_PLACE_CLASS_NAME} ${HALL_PLACE_CLASS_NAME}_${item}`}></div>
                         <h6 className="legend-item__title">
-                            &nbsp;—&nbsp;{hallPlaceTypesRu[key]}
+                            {isClient ?
+                                (<>
+                                    &nbsp;{hallPlaceTypesRu[key]}{priceList?.[key] ? ` (${priceList[key]}руб)` : ''}
+                                </>)
+                                : (<>&nbsp;—&nbsp;{hallPlaceTypesRu[key]}</>)
+                            }
                         </h6>
                     </li>
                 )

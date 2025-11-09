@@ -11,17 +11,17 @@ interface HallPlaceProps {
     col: number;
     status: (keyof typeof HALL_PLACE_TYPES_ADMIN) | (keyof typeof HALL_PLACE_TYPES_CLIENT);
     hall: string[][];
-    // hallPlaceTypes: typeof HALL_PLACE_TYPES_ADMIN | typeof HALL_PLACE_TYPES_CLIENT;
     isAdmin: boolean;
     onPlaceClick: (row: number, col: number) => void;
+    isActive?: boolean
 }
 
-export default function HallPlace({row, col, hall, status, isAdmin, onPlaceClick}: HallPlaceProps) {
+export default function HallPlace({row, col, hall, status, isAdmin, onPlaceClick, isActive = false}: HallPlaceProps) {
 
     const title = isAdmin ? status as HallPlaceTypesAdmin : status as HallPlaceTypesClient
 
     return (
-        <button className={`${HALL_PLACE_CLASS_NAME} ${HALL_PLACE_CLASS_NAME}_${hall[row][col]}`}
+        <button className={`${HALL_PLACE_CLASS_NAME} ${HALL_PLACE_CLASS_NAME}_${hall[row][col]}${isActive ? ' active' : ''}`}
                 type="button"
                 style={
                     {
@@ -29,6 +29,7 @@ export default function HallPlace({row, col, hall, status, isAdmin, onPlaceClick
                         gridColumn: col + 1
                     }
                 }
+                disabled={!isAdmin && title === 'taken'}
                 title={title}
                 data-type={hall[row][col]}
                 onClick={() => {

@@ -14,10 +14,8 @@ export interface DateData {
   day: string;
 }
 
-
 const DAYS_COUNT = 10;
 const DAYS_OF_WEEK = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
-
 
 const today = new Date();
 
@@ -40,11 +38,9 @@ export default function NavDate(): ReactNode {
 
   const {updateDate} = useClientContext();
 
-
   const [activeDate, setActiveDate] = useState(dateList[0]["value"]);
 
   useEffect(() => {
-    console.log('useEffect updateDate')
     updateDate(dateList[0]["value"])
   }, [updateDate]);
 

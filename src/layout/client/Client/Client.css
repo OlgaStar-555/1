@@ -4,3 +4,8 @@
     row-gap: var(--content-gap);
     margin-bottom: var(--content-gap);
 }
+
+.button.button_action {
+    padding-left: 3.193rem;
+    padding-right: 3.155rem;
+}
